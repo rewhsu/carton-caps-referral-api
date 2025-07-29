@@ -23,7 +23,7 @@ steps:
       - "--runtime=nodejs18"
       - "--trigger-http"
       - "--allow-unauthenticated"
-      - "--region=us-central1"
+      - "--region=us-west1"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -35,7 +35,7 @@ steps:
       - "--runtime=nodejs18"
       - "--trigger-http"
       - "--allow-unauthenticated"
-      - "--region=us-central1"
+      - "--region=us-west1"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -47,7 +47,7 @@ steps:
       - "--runtime=nodejs18"
       - "--trigger-http"
       - "--allow-unauthenticated"
-      - "--region=us-central1"
+      - "--region=us-west1"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -59,7 +59,7 @@ steps:
       - "--runtime=nodejs18"
       - "--trigger-http"
       - "--allow-unauthenticated"
-      - "--region=us-central1"
+      - "--region=us-west1"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -71,7 +71,7 @@ steps:
       - "--runtime=nodejs18"
       - "--trigger-http"
       - "--allow-unauthenticated"
-      - "--region=us-central1"
+      - "--region=us-west1"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -83,4 +83,4 @@ steps:
       - "--runtime=nodejs18"
       - "--trigger-http"
       - "--allow-unauthenticated"
-      - "--region=us-central1"
+      - "--region=us-west1"

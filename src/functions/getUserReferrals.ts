@@ -28,9 +28,11 @@ http("getUserReferrals", (req: Request, res: Response): void => {
   }
 
   try {
-    const userId = req.params.userId as string;
+    const userId = (req.params.userId as string) ?? null;
     const limit = Number((req.query.limit as string) ?? 10);
     const offset = Number((req.query.offset as string) ?? 0);
+
+    console.log("userId", userId);
 
     if (!userId) {
       const error: ApiError = {

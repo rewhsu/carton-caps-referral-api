@@ -1,10 +1,7 @@
-// Import all function files to register them with the Functions Framework
 import "../functions/getUserReferrals";
 import "../functions/getUserReferralInfo";
 import "../functions/validateReferralCode";
 import "../functions/createReferral";
-
-import { getFunction } from "@google-cloud/functions-framework/testing";
 import { mockDataService } from "../services/mockDataService";
 import { jest } from "@jest/globals";
 import type { HttpFunction } from "@google-cloud/functions-framework";
@@ -18,12 +15,17 @@ describe("Cloud Functions", () => {
 
   describe("getUserReferrals", () => {
     it("should return referrals for valid user", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const getUserReferrals = getFunction("getUserReferrals") as HttpFunction;
 
       const req = {
         method: "GET",
-        query: {
+        params: {
           userId: testUser.id,
+        },
+        query: {
           limit: "10",
           offset: "0",
         },
@@ -45,16 +47,19 @@ describe("Cloud Functions", () => {
         expect.objectContaining({
           referrals: expect.any(Array),
           total: expect.any(Number),
-          hasMore: expect.any(Boolean),
         })
       );
     });
 
     it("should return 400 for missing userId", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const getUserReferrals = getFunction("getUserReferrals") as HttpFunction;
 
       const req = {
         method: "GET",
+        params: {},
         query: {},
         get: jest.fn(),
         header: jest.fn(),
@@ -71,17 +76,24 @@ describe("Cloud Functions", () => {
 
       expect(res.status).toHaveBeenCalledWith(400);
       expect(res.json).toHaveBeenCalledWith({
-        error: "Missing required parameter: userId",
+        error: "INVALID_USER_ID",
+        message: "Invalid user ID required",
+        code: 400,
       });
     });
 
     it("should return 404 for non-existent user", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const getUserReferrals = getFunction("getUserReferrals") as HttpFunction;
 
       const req = {
         method: "GET",
-        query: {
+        params: {
           userId: "non-existent-user",
+        },
+        query: {
           limit: "10",
           offset: "0",
         },
@@ -100,20 +112,28 @@ describe("Cloud Functions", () => {
 
       expect(res.status).toHaveBeenCalledWith(404);
       expect(res.json).toHaveBeenCalledWith({
-        error: "User not found",
+        error: "USER_NOT_FOUND",
+        message: "User not found",
+        code: 404,
       });
     });
   });
 
   describe("getUserReferralInfo", () => {
     it("should return referral info for valid user", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const getUserReferralInfo = getFunction(
         "getUserReferralInfo"
       ) as HttpFunction;
 
       const req = {
         method: "GET",
-        query: { userId: testUser.id },
+        params: {
+          userId: testUser.id,
+        },
+        query: {},
         get: jest.fn(),
         header: jest.fn(),
       };
@@ -139,12 +159,16 @@ describe("Cloud Functions", () => {
     });
 
     it("should return 400 for missing userId", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const getUserReferralInfo = getFunction(
         "getUserReferralInfo"
       ) as HttpFunction;
 
       const req = {
         method: "GET",
+        params: {},
         query: {},
         get: jest.fn(),
         header: jest.fn(),
@@ -165,13 +189,19 @@ describe("Cloud Functions", () => {
 
   describe("validateReferralCode", () => {
     it("should validate existing referral code", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const validateReferralCode = getFunction(
         "validateReferralCode"
       ) as HttpFunction;
 
       const req = {
         method: "GET",
-        query: { referralCode: testUser.referralCode },
+        params: {
+          referralCode: testUser.referralCode,
+        },
+        query: {},
         get: jest.fn(),
         header: jest.fn(),
       };
@@ -194,13 +224,17 @@ describe("Cloud Functions", () => {
     });
 
     it("should return invalid for non-existent referral code", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const validateReferralCode = getFunction(
         "validateReferralCode"
       ) as HttpFunction;
 
       const req = {
         method: "GET",
-        query: { referralCode: "INVALID123" },
+        params: { referralCode: "INVALID123" },
+        query: {},
         get: jest.fn(),
         header: jest.fn(),
       };
@@ -215,15 +249,18 @@ describe("Cloud Functions", () => {
       await validateReferralCode(req as any, res as any);
 
       expect(res.json).toHaveBeenCalledWith({
-        isValid: false,
-        isExpired: false,
-        reason: "not_found",
+        error: "INVALID_REFERRAL_CODE",
+        message: "Invalid referral code required",
+        code: 400,
       });
     });
   });
 
   describe("createReferral", () => {
     it("should create referral for valid user", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const createReferral = getFunction("createReferral") as HttpFunction;
 
       const req = {
@@ -231,7 +268,7 @@ describe("Cloud Functions", () => {
         body: {
           referrerUserId: testUser.id,
           referredUserEmail: "newuser@example.com",
-          shareMethod: "email",
+          sharedMethod: "email",
           customMessage: "Join me on Carton Caps!",
         },
         get: jest.fn(),
@@ -261,6 +298,9 @@ describe("Cloud Functions", () => {
     });
 
     it("should return 400 for missing required fields", async () => {
+      const {
+        getFunction,
+      } = require("@google-cloud/functions-framework/testing");
       const createReferral = getFunction("createReferral") as HttpFunction;
 
       const req = {

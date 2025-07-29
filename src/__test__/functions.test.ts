@@ -267,7 +267,6 @@ describe("Cloud Functions", () => {
         method: "POST",
         body: {
           referrerUserId: testUser.id,
-          // Missing referredUserEmail and shareMethod
         },
         get: jest.fn(),
         header: jest.fn(),

@@ -264,7 +264,9 @@ describe("Cloud Functions", () => {
         method: "POST",
         body: {
           referrerUserId: testUser.id,
-          // Missing referredUserEmail and shareMethod
+          referredUserEmail: "newuser@example.com",
+          shareMethod: "email",
+          customMessage: "Join me!",
         },
       };
       const res = {

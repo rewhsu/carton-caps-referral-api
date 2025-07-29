@@ -15,17 +15,17 @@ const createMockDataService = () => {
   const generateMockUsers = (): void => {
     const testUsers: User[] = [
       {
-        id: "test-user-1",
+        id: "550e8400-e29b-41d4-a716-446655440001",
         email: "test1@example.com",
         name: "Test User One",
-        referralCode: "TEST001",
+        referralCode: "TEST0001",
         createdAt: "2024-01-15T10:00:00.000Z",
       },
       {
-        id: "test-user-2",
+        id: "550e8400-e29b-41d4-a716-446655440002",
         email: "test2@example.com",
         name: "Test User Two",
-        referralCode: "TEST002",
+        referralCode: "TEST0002",
         createdAt: "2024-02-01T10:00:00.000Z",
       },
     ];

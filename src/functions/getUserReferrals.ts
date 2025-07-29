@@ -32,8 +32,6 @@ http("getUserReferrals", (req: Request, res: Response): void => {
     const limit = Number((req.query.limit as string) ?? 10);
     const offset = Number((req.query.offset as string) ?? 0);
 
-    console.log("userId", userId);
-
     if (!userId) {
       const error: ApiError = {
         error: "INVALID_USER_ID",

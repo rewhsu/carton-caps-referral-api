@@ -1,0 +1,86 @@
+steps:
+  # Build the functions
+  - name: "node:18"
+    entrypoint: "npm"
+    args: ["install"]
+
+  - name: "node:18"
+    entrypoint: "npm"
+    args: ["run", "build"]
+
+  - name: "node:18"
+    entrypoint: "npm"
+    args: ["test"]
+
+  # Deploy each function
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "functions"
+      - "deploy"
+      - "getUserReferrals"
+      - "--source=."
+      - "--entry-point=getUserReferrals"
+      - "--runtime=nodejs18"
+      - "--trigger-http"
+      - "--allow-unauthenticated"
+      - "--region=us-central1"
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "functions"
+      - "deploy"
+      - "getUserReferralInfo"
+      - "--source=."
+      - "--entry-point=getUserReferralInfo"
+      - "--runtime=nodejs18"
+      - "--trigger-http"
+      - "--allow-unauthenticated"
+      - "--region=us-central1"
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "functions"
+      - "deploy"
+      - "validateReferralCode"
+      - "--source=."
+      - "--entry-point=validateReferralCode"
+      - "--runtime=nodejs18"
+      - "--trigger-http"
+      - "--allow-unauthenticated"
+      - "--region=us-central1"
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "functions"
+      - "deploy"
+      - "createReferral"
+      - "--source=."
+      - "--entry-point=createReferral"
+      - "--runtime=nodejs18"
+      - "--trigger-http"
+      - "--allow-unauthenticated"
+      - "--region=us-central1"
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "functions"
+      - "deploy"
+      - "documentation"
+      - "--source=."
+      - "--entry-point=documentation"
+      - "--runtime=nodejs18"
+      - "--trigger-http"
+      - "--allow-unauthenticated"
+      - "--region=us-central1"
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "functions"
+      - "deploy"
+      - "health"
+      - "--source=."
+      - "--entry-point=health"
+      - "--runtime=nodejs18"
+      - "--trigger-http"
+      - "--allow-unauthenticated"
+      - "--region=us-central1"

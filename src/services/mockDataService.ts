@@ -13,7 +13,29 @@ const createMockDataService = () => {
   };
 
   const generateMockUsers = (): void => {
-    for (let i = 0; i < 8; i++) {
+    const testUsers: User[] = [
+      {
+        id: "test-user-1",
+        email: "test1@example.com",
+        name: "Test User One",
+        referralCode: "TEST001",
+        createdAt: "2024-01-15T10:00:00.000Z",
+      },
+      {
+        id: "test-user-2",
+        email: "test2@example.com",
+        name: "Test User Two",
+        referralCode: "TEST002",
+        createdAt: "2024-02-01T10:00:00.000Z",
+      },
+    ];
+
+    testUsers.forEach((user) => {
+      users.set(user.id, user);
+      referralsByUser.set(user.id, []);
+    });
+
+    for (let i = 0; i < 6; i++) {
       const user: User = {
         id: uuidv4(),
         email: faker.internet.email(),
@@ -53,7 +75,7 @@ const createMockDataService = () => {
         customMessage: faker.datatype.boolean()
           ? faker.lorem.sentence()
           : undefined,
-        expiresAt: new Date(createdAt.getTime() + 30 * 24 * 60 * 60 * 1000), // 30 days
+        expiresAt: new Date(createdAt.getTime() + 30 * 24 * 60 * 60 * 1000),
       };
 
       referrals.set(referral.id, referral);

@@ -1,10 +1,9 @@
-import { http } from "@google-cloud/functions-framework";
 import type { Request, Response } from "@google-cloud/functions-framework";
 import { mockDataService } from "../services/mockDataService";
 import type { User, ApiError } from "../types/referral";
 import type { ReadonlyDeep } from "type-fest";
 
-http("getAllUsers", (req: Request, res: Response) => {
+export const getAllUsers = (req: Request, res: Response) => {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET");
   res.set("Access-Control-Allow-Headers", "Content-Type");
@@ -49,4 +48,4 @@ http("getAllUsers", (req: Request, res: Response) => {
     };
     res.status(500).json(apiError);
   }
-});
+};

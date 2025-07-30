@@ -1,4 +1,3 @@
-import { http } from "@google-cloud/functions-framework";
 import type { Request, Response } from "@google-cloud/functions-framework";
 import { mockDataService } from "../services/mockDataService";
 import type {
@@ -8,7 +7,7 @@ import type {
 } from "../types/referral";
 import type { ReadonlyDeep } from "type-fest";
 
-http("getUserReferrals", (req: Request, res: Response): void => {
+export const getUserReferrals = (req: Request, res: Response): void => {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET");
 
@@ -74,4 +73,4 @@ http("getUserReferrals", (req: Request, res: Response): void => {
     };
     res.status(500).json(apiError);
   }
-});
+};

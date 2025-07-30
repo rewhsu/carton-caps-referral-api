@@ -1,9 +1,8 @@
-import { http } from "@google-cloud/functions-framework";
 import type { Request, Response } from "@google-cloud/functions-framework";
 import { mockDataService } from "../services/mockDataService";
 import type { ValidateReferralResponse, ApiError } from "../types/referral";
 
-http("validateReferralCode", (req: Request, res: Response): void => {
+export const validateReferralCode = (req: Request, res: Response): void => {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET");
   res.set("Access-Control-Allow-Headers", "Content-Type");
@@ -79,4 +78,4 @@ http("validateReferralCode", (req: Request, res: Response): void => {
     };
     res.status(500).json(apiError);
   }
-});
+};

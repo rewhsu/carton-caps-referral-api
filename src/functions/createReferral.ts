@@ -1,4 +1,3 @@
-import { http } from "@google-cloud/functions-framework";
 import type { Request, Response } from "@google-cloud/functions-framework";
 import { mockDataService } from "../services/mockDataService";
 import type {
@@ -7,7 +6,7 @@ import type {
   ApiError,
 } from "../types/referral";
 
-http("createReferral", (req: Request, res: Response): void => {
+export const createReferral = (req: Request, res: Response): void => {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "POST");
   res.set("Access-Control-Allow-Headers", "Content-Type");
@@ -103,4 +102,4 @@ http("createReferral", (req: Request, res: Response): void => {
     };
     res.status(500).json(apiError);
   }
-});
+};

@@ -1,9 +1,8 @@
-import { http } from "@google-cloud/functions-framework";
 import type { Request, Response } from "@google-cloud/functions-framework";
 import { mockDataService } from "../services/mockDataService";
 import type { ReferralInfo, ApiError } from "../types/referral";
 
-http("getUserReferralInfo", (req: Request, res: Response): void => {
+export const getUserReferralInfo = (req: Request, res: Response): void => {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET");
 
@@ -64,4 +63,4 @@ http("getUserReferralInfo", (req: Request, res: Response): void => {
     };
     res.status(500).json(apiError);
   }
-});
+};

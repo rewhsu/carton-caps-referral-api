@@ -25,10 +25,6 @@ steps:
       - "--trigger-http"
       - "--allow-unauthenticated"
       - "--region=us-west1"
-      - "--memory=256MB"
-      - "--timeout=60s"
-      - "--max-instances=10"
-      - "--concurrency=80"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -42,10 +38,6 @@ steps:
       - "--trigger-http"
       - "--allow-unauthenticated"
       - "--region=us-west1"
-      - "--memory=256MB"
-      - "--timeout=60s"
-      - "--max-instances=10"
-      - "--concurrency=80"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -59,10 +51,6 @@ steps:
       - "--trigger-http"
       - "--allow-unauthenticated"
       - "--region=us-west1"
-      - "--memory=256MB"
-      - "--timeout=60s"
-      - "--max-instances=10"
-      - "--concurrency=80"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -76,10 +64,6 @@ steps:
       - "--trigger-http"
       - "--allow-unauthenticated"
       - "--region=us-west1"
-      - "--memory=256MB"
-      - "--timeout=60s"
-      - "--max-instances=10"
-      - "--concurrency=80"
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -93,7 +77,3 @@ steps:
       - "--trigger-http"
       - "--allow-unauthenticated"
       - "--region=us-west1"
-      - "--memory=256MB"
-      - "--timeout=60s"
-      - "--max-instances=10"
-      - "--concurrency=80"

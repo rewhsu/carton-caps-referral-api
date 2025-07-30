@@ -7,7 +7,7 @@
     "start": "functions-framework --target=getAllUsers --port=8080",
     "dev": "npm run build && npm start",
     "test": "jest",
-    "deploy": "gcloud functions deploy getAllUsers --runtime nodejs20 --trigger-http --allow-unauthenticated --gen2"
+    "deploy": "gcloud functions deploy getAllUsers --runtime nodejs20 --trigger-http --allow-unauthenticated --gen2 --region=us-west1"
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
@@ -28,6 +28,6 @@
     "typescript": "^5.3.2"
   },
   "engines": {
-    "node": ">=20"
+    "node": "20.9.0"
   }
 }

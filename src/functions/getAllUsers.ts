@@ -38,7 +38,6 @@ http("getAllUsers", (req: Request, res: Response) => {
       total,
       limit,
       offset,
-      hasMore: offset + limit < total,
     };
 
     res.json(response);

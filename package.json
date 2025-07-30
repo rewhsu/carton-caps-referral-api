@@ -1,13 +1,13 @@
 {
   "name": "carton-caps-referral-api",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "start": "functions-framework --target=getAllUsers --port=8080",
     "dev": "npm run build && npm start",
     "test": "jest",
-    "deploy": "gcloud functions deploy getUserReferrals --runtime nodejs20 --trigger-http --allow-unauthenticated"
+    "deploy": "gcloud functions deploy getAllUsers --runtime nodejs20 --trigger-http --allow-unauthenticated --gen2"
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",

@@ -60,3 +60,15 @@ steps:
       - "--trigger-http"
       - "--allow-unauthenticated"
       - "--region=us-west1"
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "functions"
+      - "deploy"
+      - "getAllUsers"
+      - "--source=."
+      - "--entry-point=getAllUsers"
+      - "--runtime=nodejs18"
+      - "--trigger-http"
+      - "--allow-unauthenticated"
+      - "--region=us-west1"

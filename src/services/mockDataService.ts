@@ -196,6 +196,14 @@ const createMockDataService = () => {
     },
 
     getFirstUser: (): User => Array.from(users.values())[0],
+
+    getAllUsers: (limit = 50, offset = 0) => {
+      const allUsers = Array.from(users.values());
+      const total = allUsers.length;
+      const paginatedUsers = allUsers.slice(offset, offset + limit);
+
+      return { users: paginatedUsers, total };
+    },
   };
 };
 

@@ -4,7 +4,7 @@ import { validateReferralCode } from "../functions/validateReferralCode";
 import { createReferral } from "../functions/createReferral";
 import { mockDataService } from "../services/mockDataService";
 import { jest } from "@jest/globals";
-import type { Request, Response } from "@google-cloud/functions-framework";
+import type { Request, Response } from "express";
 
 describe("Cloud Functions", () => {
   let testUser: any;

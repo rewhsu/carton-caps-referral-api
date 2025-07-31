@@ -1,5 +1,4 @@
 import { faker } from "@faker-js/faker";
-import { v4 as uuidv4 } from "uuid";
 import type { User, Referral } from "../types/referral";
 
 const createMockDataService = () => {
@@ -37,7 +36,7 @@ const createMockDataService = () => {
 
     for (let i = 0; i < 6; i++) {
       const user: User = {
-        id: uuidv4(),
+        id: faker.string.uuid(),
         email: faker.internet.email(),
         name: faker.person.fullName(),
         referralCode: generateReferralCode(),
@@ -60,11 +59,11 @@ const createMockDataService = () => {
       const createdAt = faker.date.past({ years: 0.3 });
 
       const referral: Referral = {
-        id: uuidv4(),
+        id: faker.string.uuid(),
         referrerUserId,
         referralCode: referrer.referralCode,
         referredUserEmail: faker.internet.email(),
-        referredUserId: status === "completed" ? uuidv4() : undefined,
+        referredUserId: status === "completed" ? faker.string.uuid() : undefined,
         status,
         createdAt,
         completedAt:
@@ -154,7 +153,7 @@ const createMockDataService = () => {
       }
 
       const referral: Referral = {
-        id: uuidv4(),
+        id: faker.string.uuid(),
         referrerUserId,
         referralCode: referrer.referralCode,
         referredUserEmail,

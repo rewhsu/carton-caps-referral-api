@@ -75,7 +75,6 @@ temp/
 # Google Cloud
 .gcloudignore
 service-account-key.json
-*.json
 
 # Functions Framework
 .functions-framework-*

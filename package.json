@@ -1,33 +1,34 @@
 {
   "name": "carton-caps-referral-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "functions-framework --target=getAllUsers --port=8080",
-    "dev": "npm run build && npm start",
+    "start": "npm run build && node dist/index.js",
     "test": "jest",
-    "deploy": "gcloud functions deploy getAllUsers --runtime nodejs20 --trigger-http --allow-unauthenticated --gen2 --region=us-west1"
+    "deploy:functions": "gcloud functions deploy getAllUsers --runtime nodejs20 --trigger-http --allow-unauthenticated --gen2 --region=us-west1",
+    "deploy": "gcloud run deploy --source .",
+    "local": "gcloud beta code dev"
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
     "@google-cloud/functions-framework": "^3.3.0",
+    "express": "^5.1.0",
     "swagger-ui-express": "^5.0.0",
     "type-fest": "^4.8.3",
-    "uuid": "^9.0.1",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@types/express": "^5.0.3",
     "@types/jest": "^29.5.8",
     "@types/node": "^20.10.0",
     "@types/swagger-ui-express": "^4.1.6",
-    "@types/uuid": "^9.0.7",
     "@types/yamljs": "^0.2.34",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.3.2"
+    "typescript": "^5.8.3"
   },
   "engines": {
-    "node": "20.9.0"
+    "node": "20"
   }
 }

@@ -2,11 +2,11 @@ FROM node:20-slim
 
 WORKDIR /usr/src/app
 
-COPY package.json .
+COPY package*.json ./
 
 RUN npm install
 
-COPY . ./
+COPY . .
 
 RUN npm run build
 

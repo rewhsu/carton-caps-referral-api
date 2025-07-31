@@ -1,4 +1,4 @@
-import type { Request, Response } from "@google-cloud/functions-framework";
+import type { Request, Response } from "express";
 import { mockDataService } from "../services/mockDataService";
 import type {
   ApiError,
